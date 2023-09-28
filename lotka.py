@@ -11,8 +11,8 @@ N = 100000
 # time (for plot)
 t=np.linspace(0,T,N+1)
 # ODE parameters
-a=1.2
-b=0.5
+a=1.7
+b=0.9
 d=0.2
 g=0.3
 
@@ -26,7 +26,10 @@ sol[0,1] = 10
 # Forward Euler solution
 sol_fe = ts.f_euler(sol, N, T, a, b, g, d)
 
-plt.plot(t, sol_fe[:,0])
-plt.plot(t, sol_fe[:,1])
+# Plot
+fig, ax = plt.subplots(1,2)
+ax[0].plot(t, sol_fe[:,0])
+ax[0].plot(t, sol_fe[:,1])
+ax[1].plot(sol_fe[:,0], sol_fe[:,1])
 plt.show()
 
