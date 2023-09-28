@@ -2,7 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from scipy.integrate import solve_ivp
 
-t=np.linspace(0,100, 10)
+t_span = [0, 100]
 # ODE parameters
 a=1.2
 b=0.5
@@ -21,10 +21,10 @@ def lv(t, y, a, b, d, g):
 
 
 #scipy implementation of the solver (runga-kutta scipy solver)
-sol = solve_ivp(lambda t, y: lv(t, y, a, b, d, g), t, y0)
+sol = solve_ivp(lambda t, y: lv(t, y, a, b, d, g), t_span, y0)
 
-z = sol.sol(t)
-plt.show(t, z.T)
+z = sol.t
+plt.show(z, sol.y.T)
 plt.xlabel('t')
 plt.legend(['x', 'y'], shadow=True)
 plt.title('Lotka-Volterra System')
