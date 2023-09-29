@@ -28,11 +28,15 @@ d=0.4
 g=0.3
 
 lotka=evolve_vec.evolve_vec(phi=fwd_euler.fwd_euler,
-                    f=lambda t,X: np.array([t, a*X[0]-b*X[0]*X[1],d*X[0]*X[1]-g*X[1]]),
+                    f=lambda t,X: np.array([a*X[0]-b*X[0]*X[1],d*X[0]*X[1]-g*X[1]]),
                     Df=lambda t,x,y: np.array([0,0]),
                     t=0,
                     z0=np.array([10,10], ndmin=2),
                     T=50,
-                    N=100
+                    N=10000
                     )
+
+fig, ax = plt.subplots()
+ax.plot(lotka[:,0], lotka[:,1])
+plt.show()
 
