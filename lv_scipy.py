@@ -17,7 +17,7 @@ def lv_rhs(t, sol, a, b, d, g):
         d*sol[0]*sol[1] - g*sol[1]
     ])
 
-sol = solve_ivp(lambda t,y: lv_rhs(t, y, a, b, d, g), t_span, y0)
+sol = solve_ivp(lambda t,y: lv_rhs(t, y, a, b, d, g), t_span, y0, max_step=0.1)
 
 plt.plot(sol.t, sol.y.T)
 plt.xlabel('t')
