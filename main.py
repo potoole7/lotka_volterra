@@ -19,7 +19,6 @@ z = evolve.evolve(phi=fwd_euler.fwd_euler,
 t_span=np.linspace(0,1,51)
 plt.plot(t_span,z)
 plt.plot(t_span, np.exp(-t_span), "--o")
-plt.show()
 
 # lotka-volterra parameters
 a=1.1
@@ -38,5 +37,18 @@ lotka=evolve_vec.evolve_vec(phi=fwd_euler.fwd_euler,
 
 fig, ax = plt.subplots()
 ax.plot(lotka[:,0], lotka[:,1])
+
+fig_p, ax_p = plt.subplots()
+for k in range(5):
+    lotka_phase=evolve_vec.evolve_vec(phi=fwd_euler.fwd_euler,
+                    f=lambda t,X: np.array([a*X[0]-b*X[0]*X[1],d*X[0]*X[1]-g*X[1]]),
+                    Df=lambda t,x,y: np.array([0,0]),
+                    t=0,
+                    z0=np.array([k*2,k*2], ndmin=2),
+                    T=50,
+                    N=10000
+                    )
+    ax_p.plot(lotka_phase[:,0], lotka_phase[:,1])
 plt.show()
+
 
